@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ms-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: ms-etudiant
+          uri: lb://ms-etudiant
+          predicates:
+            - Path=/api/etudiant/**
+        - id: ms-classe
+          uri: lb://ms-classe
+          predicates:
+            - Path=/api/classe/**
+  config:
+    import: optional:configserver:http://localhost:8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
