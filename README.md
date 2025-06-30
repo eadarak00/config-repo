@@ -24,5 +24,6 @@ Chaque fichier correspond à un microservice :
 | `ms-etudiant.yml`        | Microservice Étudiant   | 9002             | MongoDB          | `etudiant-db`                 |
 
 -------------------------------------
-👨‍💻 Auteur : *El Hadji Abdou DRAME*
+👨‍💻 Auteur : *El Hadji Abdou DRAME* 
+
 📅 Dernière mise à jour : Juin 2025
