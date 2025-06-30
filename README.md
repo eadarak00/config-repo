@@ -1,7 +1,6 @@
-## `README.md` — *config-repo*
+# config-repo
 
-````markdown
-# 📦 config-repo
+## config-repo
 
 Ce dépôt contient tous les fichiers de configuration centralisée des microservices du projet **GL 2025** basé sur une architecture **Spring Cloud**.
 
@@ -24,8 +23,6 @@ Chaque fichier correspond à un microservice :
 | `ms-classe.yml`          | Microservice Classe     | 9001             | MongoDB          | `classe-db`                   |
 | `ms-etudiant.yml`        | Microservice Étudiant   | 9002             | MongoDB          | `etudiant-db`                 |
 
-
-
-
+-------------------------------------
 👨‍💻 Auteur : *El Hadji Abdou DRAME*
 📅 Dernière mise à jour : Juin 2025
