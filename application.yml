@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: native
+    active: dev
 
 server:
   error:
