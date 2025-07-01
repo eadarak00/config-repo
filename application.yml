@@ -1,12 +1,22 @@
-server:
-  error:
-    include-message: always
+# Paramètres communs à tous les microservices
+spring:
+  cloud:
+    config:
+      enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: false  # Désactive la découverte automatique des routes
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*"  # Expose tous les endpoints Actuator
   endpoint:
     health:
       show-details: always
+
+server:
+  error:
+    include-message: always  # Affiche les messages d'erreur complets

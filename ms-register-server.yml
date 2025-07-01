@@ -6,6 +6,15 @@ spring:
     name: ms-register-server
 
 eureka:
+  instance:
+    hostname: localhost
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false  # Désactive l'auto-enregistrement
+    fetch-registry: false       # Désactive la récupération du registre
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+logging:
+  level:
+    com.netflix.eureka: INFO
+    com.netflix.discovery: INFO

@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: ms-gateway
-
   cloud:
     gateway:
       routes:
@@ -12,14 +11,25 @@ spring:
           uri: lb://ms-etudiant
           predicates:
             - Path=/api/etudiant/**
+          filters:
+            - StripPrefix=1  # Enlève '/api' de l'URL avant routage
         - id: ms-classe
           uri: lb://ms-classe
           predicates:
             - Path=/api/classe/**
-  config:
-    import: optional:configserver:http://localhost:8888
+          filters:
+            - StripPrefix=1
+      httpclient:
+        connect-timeout: 1000  # Timeout en ms
+        response-timeout: 5s   # Timeout des réponses
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+    healthcheck:
+      enabled: true  # Active les checks de santé pour Eureka
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG  # Logs détaillés pour le routage
