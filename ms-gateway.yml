@@ -1,46 +1,3 @@
-# server:
-#   port: 8080
-
-# spring:
-#   application:
-#     name: ms-gateway
-
-#   cloud:
-#     gateway:
-#       routes:
-#         - id: ms-etudiant
-#           uri: lb://ms-etudiant
-#           predicates:
-#             - Path=/api/etudiant/**
-#           filters:
-#             - StripPrefix=2  # Pour enlever /api/etudiant
-
-#         - id: ms-classe
-#           uri: lb://ms-classe
-#           predicates:
-#             - Path=/api/classe/**
-#           filters:
-#             - StripPrefix=2  # Pour enlever /api/classe
-
-#       httpclient:
-#         connect-timeout: 1000
-#         response-timeout: 5s
-
-#       discovery:
-#         locator:
-#           enabled: false  # à true si tu veux activer le routage Eureka auto
-
-# eureka:
-#   client:
-#     service-url:
-#       defaultZone: http://localhost:8761/eureka
-#     healthcheck:
-#       enabled: true
-
-# logging:
-#   level:
-#     org.springframework.cloud.gateway: DEBUG
-
 server:
   port: 8080
 
@@ -67,13 +24,25 @@ spring:
               filters:
                 - StripPrefix=2
 
-          httpclient:
-            connect-timeout: 1000
-            response-timeout: 5s
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
 
-          discovery:
-            locator:
-              enabled: false
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+
+      discovery:
+        locator:
+          enabled: false
 
 eureka:
   client:
