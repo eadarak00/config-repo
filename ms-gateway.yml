@@ -6,34 +6,38 @@
 #     name: ms-gateway
 #   cloud:
 #     gateway:
-#       routes:
-#         - id: ms-etudiant
-#           uri: lb://ms-etudiant
-#           predicates:
-#             - Path=/api/etudiant/**
-#           filters:
-#             - StripPrefix=1  # Enlève '/api' de l'URL avant routage
-#         - id: ms-classe
-#           uri: lb://ms-classe
-#           predicates:
-#             - Path=/api/classe/**
-#           filters:
-#             - StripPrefix=1
-#       httpclient:
-#         connect-timeout: 1000  # Timeout en ms
-#         response-timeout: 5s   # Timeout des réponses
+#       server:
+#         webflux:
+#           routes:
+#             - id: ms-etudiant
+#               uri: lb://ms-etudiant
+#               predicates:
+#                 - Path=/api/etudiant/**
+#               filters:
+#                 - StripPrefix=1  # Enlève '/api' avant routage
+#             - id: ms-classe
+#               uri: lb://ms-classe
+#               predicates:
+#                 - Path=/api/classe/**
+#               filters:
+#                 - StripPrefix=1
+#           httpclient:
+#             connect-timeout: 1000     # Timeout en ms
+#             response-timeout: 5s      # Timeout des réponses
+#           discovery:
+#             locator:
+#               enabled: false          # True si tu veux activer le routage auto par Eureka
 
 # eureka:
 #   client:
 #     service-url:
 #       defaultZone: http://localhost:8761/eureka
 #     healthcheck:
-#       enabled: true  # Active les checks de santé pour Eureka
+#       enabled: true
 
 # logging:
 #   level:
-#     org.springframework.cloud.gateway: DEBUG  # Logs détaillés pour le routage
-
+#     org.springframework.cloud.gateway: DEBUG
 
 server:
   port: 8080
@@ -41,29 +45,31 @@ server:
 spring:
   application:
     name: ms-gateway
+
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-            - id: ms-etudiant
-              uri: lb://ms-etudiant
-              predicates:
-                - Path=/api/etudiant/**
-              filters:
-                - StripPrefix=1  # Enlève '/api' avant routage
-            - id: ms-classe
-              uri: lb://ms-classe
-              predicates:
-                - Path=/api/classe/**
-              filters:
-                - StripPrefix=1
-          httpclient:
-            connect-timeout: 1000     # Timeout en ms
-            response-timeout: 5s      # Timeout des réponses
-          discovery:
-            locator:
-              enabled: false          # True si tu veux activer le routage auto par Eureka
+      routes:
+        - id: ms-etudiant
+          uri: lb://ms-etudiant
+          predicates:
+            - Path=/api/etudiant/**
+          filters:
+            - StripPrefix=2  # Pour enlever /api/etudiant
+
+        - id: ms-classe
+          uri: lb://ms-classe
+          predicates:
+            - Path=/api/classe/**
+          filters:
+            - StripPrefix=2  # Pour enlever /api/classe
+
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+
+      discovery:
+        locator:
+          enabled: false  # à true si tu veux activer le routage Eureka auto
 
 eureka:
   client:
@@ -75,3 +81,4 @@ eureka:
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
+
