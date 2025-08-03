@@ -52,3 +52,4 @@ grpc:
     ms-etudiant:
       address: static://localhost:9002
       negotiationType: plaintext
+      keepAliveWithoutCalls: true
