@@ -5,6 +5,12 @@ spring:
   application:
     name: ms-etudiant
 
+  graphql:
+    path: /graphql         # Permet d'accéder à /graphql via POST
+    graphiql:
+      enabled: true
+      path: /graphiql      # Accès interactif : http://localhost:9002/graphiql
+
   data:
     mongodb:
       host: localhost
