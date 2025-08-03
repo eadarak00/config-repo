@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: ms-classe
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+
 
   data:
     mongodb:
