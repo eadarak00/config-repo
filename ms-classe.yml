@@ -1,3 +1,28 @@
+# server:
+#   port: 9001
+
+# spring:
+#   application:
+#     name: ms-classe
+
+#   graphql:
+#     path: /graphql         # Important !
+#     graphiql:
+#       enabled: true
+#       path: /graphiql
+
+#   data:
+#     mongodb:
+#       host: localhost
+#       port: 27017
+#       database: classe-db
+
+# eureka:
+#   client:
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka
+
+
 server:
   port: 9001
 
@@ -5,19 +30,25 @@ spring:
   application:
     name: ms-classe
 
-  graphql:
-    path: /graphql         # Important !
-    graphiql:
-      enabled: true
-      path: /graphiql
-
   data:
     mongodb:
       host: localhost
       port: 27017
       database: classe-db
 
+  graphql:
+    path: /graphql
+    graphiql:
+      enabled: true
+      path: /graphiql
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+grpc:
+  client:
+    ms-etudiant:
+      address: static://localhost:9002
+      negotiationType: plaintext
