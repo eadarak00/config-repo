@@ -24,17 +24,17 @@ spring:
               filters:
                 - StripPrefix=2
 
-      # globalcors:
-      #   cors-configurations:
-      #     '[/**]':
-      #       allowedOrigins: "*"
-      #       allowedHeaders: "*"
-      #       allowedMethods:
-      #         - GET
-      #         - POST
-      #         - PUT
-      #         - DELETE
-      #         - OPTIONS
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
 
       httpclient:
         connect-timeout: 1000
